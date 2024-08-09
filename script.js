@@ -25,8 +25,6 @@ function checkForMatch() {
     if (isMatch) {
         score++;
         scoreDisplay.textContent = score;
-        firstCard.classList.add('match');
-        secondCard.classList.add('match');
     }
 }
 
@@ -52,7 +50,7 @@ function restartGame() {
     score = 0;
     scoreDisplay.textContent = score;
     cards.forEach(card => {
-        card.classList.remove('flip', 'match');
+        card.classList.remove('flip');
         card.addEventListener('click', flipCard);
     });
 }
