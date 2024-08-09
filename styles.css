@@ -17,6 +17,10 @@ body {
     padding: 20px;
 }
 
+.timer {
+    font-size: 18px;
+}
+
 .game-container {
     display: grid;
     grid-template-columns: repeat(4, 100px);
@@ -75,4 +79,12 @@ body {
 
 #restart:hover {
     background-color: #21a1f1;
+}
+
+.win-message {
+    display: none;
+    font-size: 24px;
+    margin-top: 20px;
+    color: #61dafb;
+    font-weight: bold;
 }

@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Memory Game - Version 3</title>
+    <title>Memory Game - Version 4</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="game-header">
         <div class="score">Score: <span id="score">0</span></div>
+        <div class="timer">Time: <span id="timer">0</span>s</div>
         <button id="restart">Restart</button>
     </div>
     <div class="game-container">
@@ -72,11 +73,20 @@
             <div class="front">🔥</div>
             <div class="back"></div>
         </div>
+        <div class="card" data-name="fire">
+            <div class="front">🔥</div>
+            <div class="back"></div>
+        </div>
+        <div class="card" data-name="fire">
+            <div class="front">🔥</div>
+            <div class="back"></div>
+        </div>
         <div class="card" data-name="cloud">
             <div class="front">☁️</div>
             <div class="back"></div>
         </div>
     </div>
+    <div class="win-message" id="winMessage">Congratulations! You won!</div>
     <script src="script.js"></script>
 </body>
 </html>
