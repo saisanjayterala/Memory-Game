@@ -1,6 +1,6 @@
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #282c34;
+    background-color: #1d1f27;
     color: white;
     display: flex;
     flex-direction: column;
@@ -8,6 +8,7 @@ body {
     align-items: center;
     height: 100vh;
     margin: 0;
+    transition: background-color 0.5s ease;
 }
 
 .game-header {
@@ -15,17 +16,44 @@ body {
     justify-content: space-between;
     width: 100%;
     padding: 20px;
+    background-color: #2c303b;
+    border-radius: 10px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+    animation: fadeIn 1s ease;
+}
+
+.score, .timer {
+    font-size: 20px;
+    font-weight: bold;
+    color: #61dafb;
 }
 
 .timer {
-    font-size: 18px;
+    margin-left: auto;
+}
+
+#restart {
+    background-color: #61dafb;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+#restart:hover {
+    background-color: #21a1f1;
+    transform: scale(1.1);
 }
 
 .game-container {
     display: grid;
-    grid-template-columns: repeat(4, 100px);
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
     grid-gap: 10px;
     margin-top: 20px;
+    width: 80%;
+    max-width: 600px;
 }
 
 .card {
@@ -33,7 +61,7 @@ body {
     height: 100px;
     cursor: pointer;
     border-radius: 10px;
-    transition: transform 0.6s;
+    transition: transform 0.6s, box-shadow 0.3s;
     transform-style: preserve-3d;
     position: relative;
 }
@@ -68,23 +96,53 @@ body {
     transform: rotateY(0deg);
 }
 
-#restart {
-    background-color: #61dafb;
-    border: none;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-    border-radius: 5px;
-}
-
-#restart:hover {
-    background-color: #21a1f1;
-}
-
-.win-message {
+.win-message, .popup-message {
     display: none;
     font-size: 24px;
     margin-top: 20px;
     color: #61dafb;
     font-weight: bold;
+    animation: bounce 1s infinite;
+}
+
+.popup-message {
+    font-size: 18px;
+    color: #ff9800;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 10px 20px;
+    background-color: #333;
+    border-radius: 10px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    animation: popupFade 3s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+@keyframes popupFade {
+    0%, 80% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+@media (max-width: 768px) {
+    .game-container {
+        grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+        max-width: 100%;
+    }
+
+    .card {
+        width: 80px;
+        height: 80px;
+    }
 }

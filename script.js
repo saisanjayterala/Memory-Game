@@ -8,6 +8,7 @@ const scoreDisplay = document.getElementById('score');
 const timerDisplay = document.getElementById('timer');
 const restartBtn = document.getElementById('restart');
 const winMessage = document.getElementById('winMessage');
+const popupMessage = document.getElementById('popupMessage');
 let gameInterval;
 
 function startTimer() {
@@ -51,6 +52,7 @@ function checkForMatch() {
         score++;
         flippedPairs++;
         scoreDisplay.textContent = score;
+        showPopupMessage(`You scored! Total score: ${score}`);
         if (flippedPairs === cards.length / 2) {
             winGame();
         }
@@ -83,6 +85,8 @@ function restartGame() {
     scoreDisplay.textContent = score;
     timerDisplay.textContent = timer;
     winMessage.style.display = 'none';
+    popupMessage.style.display = 'none';
+    document.body.style.backgroundColor = '#1d1f27';
     cards.forEach(card => {
         card.classList.remove('flip');
         card.addEventListener('click', flipCard);
@@ -93,6 +97,15 @@ function restartGame() {
 function winGame() {
     stopTimer();
     winMessage.style.display = 'block';
+    showPopupMessage("Congratulations! You've won the game!");
+}
+
+function showPopupMessage(message) {
+    popupMessage.textContent = message;
+    popupMessage.style.display = 'block';
+    setTimeout(() => {
+        popupMessage.style.display = 'none';
+    }, 3000);
 }
 
 cards.forEach(card => card.addEventListener('click', flipCard));
